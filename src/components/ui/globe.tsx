@@ -14,13 +14,13 @@ declare module "@react-three/fiber" {
     };
   }
 }
- 
+
 extend({ ThreeGlobe: ThreeGlobe });
- 
+
 const RING_PROPAGATION_SPEED = 3;
 const aspect = window?.innerWidth / window?.innerHeight || 1;
 const cameraZ = 250;
- 
+
 type Position = {
   order: number;
   startLat: number;
@@ -30,7 +30,7 @@ type Position = {
   arcAlt: number;
   color: string;
 };
- 
+
 export type GlobeConfig = {
   pointSize?: number;
   globeColor?: string;
@@ -56,19 +56,19 @@ export type GlobeConfig = {
   autoRotate?: boolean;
   autoRotateSpeed?: number;
 };
- 
+
 interface WorldProps {
   globeConfig: GlobeConfig;
   data: Position[];
 }
- 
+
 let numbersOfRings = [0];
- 
+
 export function Globe({ globeConfig, data }: WorldProps) {
   const globeRef = useRef<ThreeGlobe | null>(null);
   const groupRef = useRef<THREE.Group>(null);
   const [isInitialized, setIsInitialized] = useState(false);
- 
+
   const defaultProps = {
     pointSize: 1,
     atmosphereColor: "#ffffff",
@@ -85,7 +85,7 @@ export function Globe({ globeConfig, data }: WorldProps) {
     maxRings: 3,
     ...globeConfig,
   };
- 
+
   // Initialize globe only once
   useEffect(() => {
     if (!globeRef.current && groupRef.current) {
@@ -94,11 +94,11 @@ export function Globe({ globeConfig, data }: WorldProps) {
       setIsInitialized(true);
     }
   }, []);
- 
+
   // Build material when globe is initialized or when relevant props change
   useEffect(() => {
     if (!globeRef.current || !isInitialized) return;
- 
+
     const globeMaterial = globeRef.current.globeMaterial() as unknown as {
       color: Color;
       emissive: Color;
@@ -116,11 +116,11 @@ export function Globe({ globeConfig, data }: WorldProps) {
     globeConfig.emissiveIntensity,
     globeConfig.shininess,
   ]);
- 
+
   // Build data when globe is initialized or when data changes
   useEffect(() => {
     if (!globeRef.current || !isInitialized || !data) return;
- 
+
     const arcs = data;
     let points = [];
     for (let i = 0; i < arcs.length; i++) {
@@ -141,17 +141,17 @@ export function Globe({ globeConfig, data }: WorldProps) {
         lng: arc.endLng,
       });
     }
- 
+
     // remove duplicates for same lat and lng
     const filteredPoints = points.filter(
       (v, i, a) =>
         a.findIndex((v2) =>
           ["lat", "lng"].every(
-            (k) => v2[k as "lat" | "lng"] === v[k as "lat" | "lng"],
-          ),
-        ) === i,
+            (k) => v2[k as "lat" | "lng"] === v[k as "lat" | "lng"]
+          )
+        ) === i
     );
- 
+
     globeRef.current
       .hexPolygonsData(countries.features)
       .hexPolygonResolution(3)
@@ -160,7 +160,7 @@ export function Globe({ globeConfig, data }: WorldProps) {
       .atmosphereColor(defaultProps.atmosphereColor)
       .atmosphereAltitude(defaultProps.atmosphereAltitude)
       .hexPolygonColor(() => defaultProps.polygonColor);
- 
+
     globeRef.current
       .arcsData(data)
       .arcStartLat((d) => (d as { startLat: number }).startLat * 1)
@@ -174,22 +174,22 @@ export function Globe({ globeConfig, data }: WorldProps) {
       .arcDashInitialGap((e) => (e as { order: number }).order * 0.5)
       .arcDashGap(1)
       .arcDashAnimateTime(() => 2000);
- 
+
     globeRef.current
       .pointsData(filteredPoints)
       .pointColor((e) => (e as { color: string }).color)
       .pointsMerge(true)
-      .pointAltitude(0.1)
-      .pointRadius(0.25)
+      .pointAltitude(0.002)
+      .pointRadius(1.5)
       .pointResolution(32);
- 
+
     globeRef.current
       .ringsData([])
       .ringColor(() => defaultProps.polygonColor)
       .ringMaxRadius(defaultProps.maxRings)
       .ringPropagationSpeed(RING_PROPAGATION_SPEED)
       .ringRepeatPeriod(
-        (defaultProps.arcTime * defaultProps.arcLength) / defaultProps.rings,
+        (defaultProps.arcTime * defaultProps.arcLength) / defaultProps.rings
       );
   }, [
     isInitialized,
@@ -204,20 +204,20 @@ export function Globe({ globeConfig, data }: WorldProps) {
     defaultProps.rings,
     defaultProps.maxRings,
   ]);
- 
+
   // Handle rings animation with cleanup
   useEffect(() => {
     if (!globeRef.current || !isInitialized || !data) return;
- 
+
     const interval = setInterval(() => {
       if (!globeRef.current) return;
- 
+
       const newNumbersOfRings = genRandomNumbers(
         0,
         data.length,
-        Math.floor((data.length * 4) / 5),
+        Math.floor((data.length * 4) / 5)
       );
- 
+
       const ringsData = data
         .filter((d, i) => newNumbersOfRings.includes(i))
         .map((d) => ({
@@ -225,42 +225,42 @@ export function Globe({ globeConfig, data }: WorldProps) {
           lng: d.startLng,
           color: d.color,
         }));
- 
+
       globeRef.current.ringsData(ringsData);
     }, 2000);
- 
+
     return () => {
       clearInterval(interval);
     };
   }, [isInitialized, data]);
- 
+
   return <group ref={groupRef} />;
 }
- 
+
 export function WebGLRendererConfig() {
   const { gl, size } = useThree();
- 
+
   useEffect(() => {
     gl.setPixelRatio(window.devicePixelRatio);
     gl.setSize(size.width, size.height);
     gl.setClearColor(0xffaaff, 0);
   }, []);
- 
+
   return null;
 }
- 
+
 export function World(props: WorldProps) {
   const { globeConfig } = props;
   const scene = new Scene();
   scene.fog = new Fog(0xffffff, 400, 2000);
   return (
-    <Canvas 
-      scene={scene} 
+    <Canvas
+      scene={scene}
       camera={{
         fov: 45,
         near: 1,
         far: 1000,
-        position: [0, 0, 450]
+        position: [0, 0, 450],
       }}
     >
       <WebGLRendererConfig />
@@ -294,13 +294,13 @@ export function World(props: WorldProps) {
     </Canvas>
   );
 }
- 
+
 export function hexToRgb(hex: string) {
   var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
   hex = hex.replace(shorthandRegex, function (m, r, g, b) {
     return r + r + g + g + b + b;
   });
- 
+
   var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   return result
     ? {
@@ -310,13 +310,13 @@ export function hexToRgb(hex: string) {
       }
     : null;
 }
- 
+
 export function genRandomNumbers(min: number, max: number, count: number) {
   const arr = [];
   while (arr.length < count) {
     const r = Math.floor(Math.random() * (max - min)) + min;
     if (arr.indexOf(r) === -1) arr.push(r);
   }
- 
+
   return arr;
 }

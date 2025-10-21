@@ -53,7 +53,9 @@ body {
   padding: 0;
 }
 
-html, body, #__next {
+html,
+body,
+#__next {
   height: 100%;
 }
 
@@ -133,4 +135,23 @@ html, body, #__next {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Futuristic navbar animations */
+@keyframes scan {
+  0% {
+    left: 0;
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    left: 100%;
+    opacity: 0;
+  }
+}
+
+.animate-scan {
+  animation: scan 1.5s ease-in-out infinite;
 }
