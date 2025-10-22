@@ -20,6 +20,8 @@ import {
 } from "@/utils/api";
 import { IoCalendar } from "react-icons/io5";
 import { IoMdAddCircleOutline } from "react-icons/io";
+import { MdDone, MdEmail } from "react-icons/md";
+import { FaLink } from "react-icons/fa";
 
 const InvoiceSuccessScreen = ({
   onBackToDashboard,
@@ -69,7 +71,7 @@ const InvoiceSuccessScreen = ({
 
         {/* Success Message */}
         <h1 className="text-4xl font-bold text-gray-900 mb-4 animate-fade-in-up">
-          Invoice Created Successfully! 🎉
+          Invoice Created Successfully!
         </h1>
         <p
           className="text-lg text-gray-600 mb-8 animate-fade-in-up"
@@ -105,16 +107,28 @@ const InvoiceSuccessScreen = ({
           className="mt-12 grid grid-cols-3 gap-4 animate-fade-in-up"
           style={{ animationDelay: "0.6s" }}>
           <div className="bg-blue-50 rounded-lg p-4">
-            <div className="text-2xl font-bold text-blue-600">✓</div>
-            <div className="text-sm text-gray-600 mt-1">Created</div>
+            <div className="text-2xl font-bold text-blue-600 flex justify-center">
+              <MdDone />
+            </div>
+            <div className="text-sm text-gray-600 mt-1 text-center">
+              Created
+            </div>
           </div>
           <div className="bg-green-50 rounded-lg p-4">
-            <div className="text-2xl font-bold text-green-600">📧</div>
-            <div className="text-sm text-gray-600 mt-1">Email Sent</div>
+            <div className="text-2xl font-bold text-green-600 flex justify-center">
+              <MdEmail />
+            </div>
+            <div className="text-sm text-gray-600 mt-1 text-center">
+              Email Sent
+            </div>
           </div>
           <div className="bg-purple-50 rounded-lg p-4">
-            <div className="text-2xl font-bold text-purple-600">🔗</div>
-            <div className="text-sm text-gray-600 mt-1">Link Ready</div>
+            <div className="text-2xl font-bold text-purple-600 flex justify-center">
+              <FaLink />
+            </div>
+            <div className="text-sm text-gray-600 mt-1 text-center">
+              Link Ready
+            </div>
           </div>
         </div>
       </div>
@@ -522,7 +536,7 @@ export default function DashboardPage() {
               {!isConnected ? (
                 <div className="bg-white rounded-lg border border-gray-200 p-8 text-center">
                   <p className="text-gray-600 text-lg mb-2">
-                    👛 Please connect your wallet
+                    Please connect your wallet
                   </p>
                   <p className="text-gray-500">
                     Connect your wallet to view your invoices
@@ -544,9 +558,7 @@ export default function DashboardPage() {
                 </div>
               ) : invoices.length === 0 ? (
                 <div className="bg-white rounded-lg border border-gray-200 p-8 text-center">
-                  <p className="text-gray-600 text-lg mb-2">
-                    📄 No invoices yet
-                  </p>
+                  <p className="text-gray-600 text-lg mb-2">No invoices yet</p>
                   <p className="text-gray-500">
                     Create your first invoice to get started
                   </p>
@@ -644,9 +656,7 @@ export default function DashboardPage() {
               </div>
             ) : invoices.length === 0 ? (
               <div className="bg-white rounded-lg border border-gray-200 p-12 text-center">
-                <p className="text-gray-600 text-xl mb-2">
-                  📄 No invoices found
-                </p>
+                <p className="text-gray-600 text-xl mb-2">No invoices found</p>
                 <p className="text-gray-500 mb-6">
                   You haven&apos;t created any invoices yet for this wallet
                 </p>
