@@ -9,6 +9,7 @@ import CreateInvoiceForm from '@/components/CreateInvoiceForm';
 import PreviewInvoice from '@/components/PreviewInvoice';
 import { WalletConnectModal } from '@/components/WalletConnectModal';
 import MerchantProfileModal from '@/components/MerchantProfileModal';
+import RefreshButton from '@/components/ui/RefreshButton';
 import { fetchInvoices, formatDate, mapInvoiceStatus, getMerchantProfile, type Invoice as APIInvoice, type MerchantProfile } from '@/utils/api';
 
 const InvoiceSuccessScreen = ({ onBackToDashboard }: { onBackToDashboard: () => void }) => {
@@ -523,15 +524,7 @@ export default function DashboardPage() {
                 <p className="text-gray-600 mt-1">Manage and track your cryptocurrency payment invoices</p>
               </div>
               <div className="flex gap-3">
-                <button 
-                  onClick={loadInvoices}
-                  disabled={isLoading}
-                  className="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-3 rounded-lg font-medium transition-colors flex items-center gap-2"
-                  title="Refresh invoices"
-                >
-                  <span className={isLoading ? 'animate-spin' : ''}>🔄</span>
-                  Refresh
-                </button>
+                <RefreshButton onClick={loadInvoices} title='Refresh invoices'/>
                 <button 
                   onClick={() => setShowCreateInvoice(true)}
                   className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center gap-2"

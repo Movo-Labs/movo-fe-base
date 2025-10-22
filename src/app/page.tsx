@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useAccount } from "wagmi";
 import CountUp from "@/components/CountUp";
 import Navbar from "@/components/Navbar";
-
+import StarBorder from "@/components/ui/StarBorder";
 const World = dynamic(
   () => import("@/components/ui/globe").then((mod) => mod.World),
   {
@@ -406,16 +406,16 @@ const globeData = [
 
 const features = [
   {
-    title: "Secure MPC Wallet",
-    description: "Industry-leading security for your digital assets",
+    title: "X402 Protocol Integration",
+    description: "Seamless cross-chain payment infrastructure with automated settlement and routing",
   },
   {
     title: "Low Transaction Fees",
     description: "Competitive rates for all transactions",
   },
   {
-    title: "Real-Time Settlements",
-    description: "Instant confirmation and settlement",
+    title: "IDRX Settlement System",
+    description: "Instant settlement in Indonesian Rupiah stablecoin with automated conversion and local currency support",
   },
   {
     title: "Multiple Cryptocurrency",
@@ -477,12 +477,45 @@ export default function HomePage() {
             secure, fast, and reliable payment platform.
           </p>
           <div className="flex items-center justify-center">
-            <button
+          <StarBorder
+              as="button"
+              color="cyan"
+              speed="3s"
               onClick={handleGetStarted}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-medium transition-colors text-lg cursor-pointer"
+              className="relative group text-white px-10 py-4 font-semibold cursor-pointer text-lg
+                bg-gradient-to-r from-cyan-500/10 via-blue-500/10 to-cyan-500/10
+                hover:from-cyan-500/20 hover:via-blue-500/20 hover:to-cyan-500/20
+                backdrop-blur-sm
+                shadow-[0_0_20px_rgba(6,182,212,0.3)]
+                hover:shadow-[0_0_30px_rgba(6,182,212,0.5)]
+                transition-all duration-500 ease-out
+                hover:scale-105 active:scale-95
+                overflow-hidden"
             >
-              Get Started
-            </button>
+              <span className="relative z-10 flex items-center gap-2">
+                Get Started
+                <svg 
+                  className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </span>
+              
+              {/* Animated gradient overlay */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-500/20 to-transparent 
+                  animate-shimmer" 
+                  style={{
+                    backgroundSize: '200% 100%',
+                    animation: 'shimmer 2s infinite'
+                  }}
+                />
+              </div>
+            </StarBorder>
+
           </div>
         </div>
       </div>

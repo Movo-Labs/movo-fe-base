@@ -1,8 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, useMemo } from "react";
+import RefreshButton from "./ui/RefreshButton";
 interface Invoice {
   id: string;
   invoiceNo: string;
@@ -157,13 +157,7 @@ export default function InvoiceTable({ invoices }: InvoiceTableProps) {
               <option value="overpaid">Overpaid</option>
             </select>
           </div>
-          <button
-            onClick={handleRefresh}
-            title="Clear"
-            className="text-gray-400 hover:text-gray-600 transition-colors"
-          >
-            🔄
-          </button>
+          <RefreshButton onClick={handleRefresh} title="Reset Filters"/>
         </div>
       </div>
 
