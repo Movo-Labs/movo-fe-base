@@ -3,9 +3,10 @@
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { useAccount } from "wagmi";
-import CountUp from "@/components/CountUp";
+import CountUp from "@/components/animations/CountUp";
 import Navbar from "@/components/Navbar";
-import StarBorder from "@/components/ui/StarBorder";
+import StarBorder from "@/components/animations/StarBorder";
+import ScrollReveal from "@/components/animations/ScrollReveal";
 const World = dynamic(
   () => import("@/components/ui/globe").then((mod) => mod.World),
   {
@@ -410,12 +411,12 @@ const features = [
     description: "Seamless cross-chain payment infrastructure with automated settlement and routing",
   },
   {
-    title: "Low Transaction Fees",
-    description: "Competitive rates for all transactions",
-  },
-  {
     title: "IDRX Settlement System",
     description: "Instant settlement in Indonesian Rupiah stablecoin with automated conversion and local currency support",
+  },
+  {
+    title: "Low Transaction Fees",
+    description: "Competitive rates for all transactions",
   },
   {
     title: "Multiple Cryptocurrency",
@@ -521,42 +522,53 @@ export default function HomePage() {
       </div>
 
       {/* Stats Section */}
-      <div className="relative z-10 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl mx-auto px-4 py-12">
-        {stats.map((stat, index) => (
-          <div key={index} className="text-center">
-            <div className="count-up-text text-2xl md:text-3xl font-bold text-white">
-              {stat.prefix && <span>{stat.prefix}</span>}
-              <CountUp
-                from={0}
-                to={parseFloat(stat.value)}
-                duration={1}
-                direction="up"
-                separator=","
-              ></CountUp>
+        <div className="relative z-10 max-w-6xl mx-auto px-4 py-12">
+          <ScrollReveal y={80} >
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              {stats.map((stat, index) => (
+                <div key={index} className="text-center">
+                  <div className="count-up-text text-2xl md:text-3xl font-bold text-white">
+                    {stat.prefix && <span>{stat.prefix}</span>}
+                    <CountUp
+                      from={0}
+                      to={parseFloat(stat.value)}
+                      duration={1}
+                      direction="up"
+                      separator=","
+                    ></CountUp>
+                  </div>
+                  <div className="text-gray-400 mt-1">{stat.label}</div>
+                </div>
+              ))}
             </div>
-            <div className="text-gray-400 mt-1">{stat.label}</div>
-          </div>
-        ))}
-      </div>
+          </ScrollReveal>
+        </div>
+
 
       {/* Features Section */}
       <div id="features" className="relative z-10 py-24 px-4">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-4">
-            Powerful Web3 Payment Features
-          </h2>
-          <p className="text-gray-400 text-center max-w-2xl mx-auto mb-16">
-            Everything you need to accept and manage cryptocurrency payments for
-            your business with Movo.
-          </p>
+          <ScrollReveal y={60}>
+            <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-4">
+              Powerful Web3 Payment Features
+            </h2>
+          </ScrollReveal>
+          <ScrollReveal y={60}>
+            <p className="text-gray-400 text-center max-w-2xl mx-auto mb-16">
+              Everything you need to accept and manage cryptocurrency payments for
+              your business with Movo.
+            </p>
+          </ScrollReveal>
           <div className="grid md:grid-cols-2 gap-8">
             {features.map((feature, index) => (
-              <div key={index} className="bg-white/5 rounded-xl p-6">
-                <h3 className="text-xl font-semibold text-white mb-2">
-                  {feature.title}
-                </h3>
-                <p className="text-gray-400">{feature.description}</p>
-              </div>
+              <ScrollReveal key={index} y={80} delay={0.1 * index}>
+                <div key={index} className="bg-white/5 rounded-xl p-6 h">
+                  <h3 className="text-xl font-semibold text-white mb-2">
+                    {feature.title}
+                  </h3>
+                  <p className="text-gray-400">{feature.description}</p>
+                </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
