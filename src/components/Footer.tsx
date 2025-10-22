@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import React, { useState } from "react";
+import Image from "next/image";
 
 const Footer = () => {
   const footerLinks = {
@@ -38,9 +39,18 @@ const Footer = () => {
             {/* 1st block */}
             <div className="lg:col-span-2">
               <Link href="/" className="inline-block">
-                <span className="text-2xl font-bold bg-linear-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                  Movo
-                </span>
+                <div className="flex items-center gap-5 mb-4">
+                  <Image
+                    src="/movo non-text.png"
+                    alt="Movo Logo"
+                    width={35}
+                    height={35}
+                    className="object-contain scale-200"
+                  />
+                  <span className="text-2xl font-bold bg-linear-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+                    movo.
+                  </span>
+                </div>
               </Link>
               <div className="text-gray-400 text-xs text-left mb-4">
                 © {new Date().getFullYear()} Movo. All rights reserved. Powered
@@ -62,8 +72,7 @@ const Footer = () => {
                   <li key={link.name}>
                     <Link
                       href={link.href}
-                      className="text-gray-400 hover:text-cyan-400 text-sm transition-colors duration-200"
-                    >
+                      className="text-gray-400 hover:text-cyan-400 text-sm transition-colors duration-200">
                       {link.name}
                     </Link>
                   </li>
@@ -81,8 +90,7 @@ const Footer = () => {
                   <li key={link.name}>
                     <Link
                       href={link.href}
-                      className="text-gray-400 hover:text-cyan-400 text-sm transition-colors duration-200"
-                    >
+                      className="text-gray-400 hover:text-cyan-400 text-sm transition-colors duration-200">
                       {link.name}
                     </Link>
                   </li>
@@ -98,8 +106,7 @@ const Footer = () => {
                   <li key={link.name}>
                     <Link
                       href={link.href}
-                      className="text-gray-400 hover:text-cyan-400 text-sm transition-colors duration-200"
-                    >
+                      className="text-gray-400 hover:text-cyan-400 text-sm transition-colors duration-200">
                       {link.name}
                     </Link>
                   </li>
@@ -115,8 +122,7 @@ const Footer = () => {
                   <li key={link.name}>
                     <Link
                       href={link.href}
-                      className="text-gray-400 hover:text-cyan-400 text-sm transition-colors duration-200"
-                    >
+                      className="text-gray-400 hover:text-cyan-400 text-sm transition-colors duration-200">
                       {link.name}
                     </Link>
                   </li>

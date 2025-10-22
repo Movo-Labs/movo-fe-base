@@ -48,12 +48,12 @@ export default function Sidebar({
             <Image
               src="/movo non-text.png"
               alt="Movo Logo"
-              width={75}
-              height={75}
+              width={30}
+              height={30}
               className="object-contain scale-200"
             />
           </div>
-          <span className="text-xl font-bold transition-colors duration-300">
+          <span className="text-2xl font-bold bg-linear-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
             movo.
           </span>
         </div>
