@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { useAccount } from "wagmi";
+import Footer from "@/components/Footer";
 import CountUp from "@/components/animations/CountUp";
 import Navbar from "@/components/Navbar";
 import StarBorder from "@/components/animations/StarBorder";
@@ -459,7 +460,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#0A0A0A] via-[#062038] to-[#0A0A0A]">
+    <div className="min-h-screen bg-linear-to-b from-[#0A0A0A] via-[#062038] to-[#0A0A0A]">
       {/* Navigation */}
       <Navbar />
 
@@ -573,6 +574,10 @@ export default function HomePage() {
           </div>
         </div>
       </div>
+      {/* Footer */}
+      <ScrollReveal y={80}>
+        <Footer />
+      </ScrollReveal>
     </div>
   );
 }
