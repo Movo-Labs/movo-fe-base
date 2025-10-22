@@ -24,22 +24,18 @@ const statusConfig = {
   prepared: {
     label: "Prepared",
     className: "bg-yellow-100 text-yellow-800 border-yellow-200",
-    icon: "⏳",
   },
   paid: {
     label: "Paid",
     className: "bg-green-100 text-green-800 border-green-200",
-    icon: "✅",
   },
   expired: {
     label: "Expired",
     className: "bg-red-100 text-red-800 border-red-200",
-    icon: "❌",
   },
   overpaid: {
     label: "Overpaid",
     className: "bg-emerald-100 text-emerald-800 border-emerald-200",
-    icon: "💰",
   },
 };
 
@@ -138,8 +134,7 @@ export default function InvoiceTable({ invoices }: InvoiceTableProps) {
             {searchQuery && (
               <button
                 onClick={() => handleSearchChange("")}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-              >
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
                 ✕
               </button>
             )}
@@ -148,8 +143,7 @@ export default function InvoiceTable({ invoices }: InvoiceTableProps) {
             <select
               className="px-4 py-2 border border-gray-300 text-gray-500 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               value={statusFilter}
-              onChange={(e) => handleStatusChange(e.target.value)}
-            >
+              onChange={(e) => handleStatusChange(e.target.value)}>
               <option value="all">All Status</option>
               <option value="prepared">Prepared</option>
               <option value="paid">Paid</option>
@@ -157,7 +151,7 @@ export default function InvoiceTable({ invoices }: InvoiceTableProps) {
               <option value="overpaid">Overpaid</option>
             </select>
           </div>
-          <RefreshButton onClick={handleRefresh} title="Reset Filters"/>
+          <RefreshButton onClick={handleRefresh} title="Reset Filters" />
         </div>
       </div>
 
@@ -203,8 +197,7 @@ export default function InvoiceTable({ invoices }: InvoiceTableProps) {
                   <tr
                     key={invoice.id}
                     onClick={() => handleRowClick(invoice.id)}
-                    className="hover:bg-blue-50 cursor-pointer transition-colors"
-                  >
+                    className="hover:bg-blue-50 cursor-pointer transition-colors">
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                       <span className="text-blue-600 hover:text-blue-800 font-semibold">
                         {invoice.invoiceNo}
@@ -222,8 +215,7 @@ export default function InvoiceTable({ invoices }: InvoiceTableProps) {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <span
-                        className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium border ${statusInfo.className}`}
-                      >
+                        className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium border ${statusInfo.className}`}>
                         <span>{statusInfo.icon}</span>
                         {statusInfo.label}
                       </span>
@@ -267,8 +259,7 @@ export default function InvoiceTable({ invoices }: InvoiceTableProps) {
             <select
               value={itemsPerPage}
               onChange={(e) => handleItemsPerPageChange(Number(e.target.value))}
-              className="px-2 py-1 border border-gray-300 rounded text-sm"
-            >
+              className="px-2 py-1 border border-gray-300 rounded text-sm">
               <option>5</option>
               <option selected>10</option>
               <option>25</option>
@@ -288,22 +279,20 @@ export default function InvoiceTable({ invoices }: InvoiceTableProps) {
                 currentPage === 1
                   ? "opacity-50 cursor-not-allowed bg-gray-100"
                   : "hover:bg-gray-50 cursor-pointer"
-              }`}
-            >
+              }`}>
               &lt; Previous
             </button>
             <span className="px-3 py-1 text-sm text-gray-700">
               Page {currentPage} of {totalPages || 1}
             </span>{" "}
-            <button 
+            <button
               onClick={handleNextPage}
               disabled={currentPage >= totalPages}
               className={`px-3 py-1 border border-gray-300 rounded text-sm transition-colors ${
-                currentPage >= totalPages 
-                  ? 'opacity-50 cursor-not-allowed bg-gray-100' 
-                  : 'hover:bg-gray-50 cursor-pointer'
-              }`}
-            >
+                currentPage >= totalPages
+                  ? "opacity-50 cursor-not-allowed bg-gray-100"
+                  : "hover:bg-gray-50 cursor-pointer"
+              }`}>
               Next &gt;
             </button>
           </div>

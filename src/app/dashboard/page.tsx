@@ -18,6 +18,8 @@ import {
   type Invoice as APIInvoice,
   type MerchantProfile,
 } from "@/utils/api";
+import { IoCalendar } from "react-icons/io5";
+import { IoMdAddCircleOutline } from "react-icons/io";
 
 const InvoiceSuccessScreen = ({
   onBackToDashboard,
@@ -34,8 +36,7 @@ const InvoiceSuccessScreen = ({
               className="w-16 h-16 text-green-600 animate-check-draw"
               fill="none"
               viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
+              stroke="currentColor">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -72,8 +73,7 @@ const InvoiceSuccessScreen = ({
         </h1>
         <p
           className="text-lg text-gray-600 mb-8 animate-fade-in-up"
-          style={{ animationDelay: "0.2s" }}
-        >
+          style={{ animationDelay: "0.2s" }}>
           Your invoice has been created and is ready to be shared with your
           customer.
         </p>
@@ -81,12 +81,10 @@ const InvoiceSuccessScreen = ({
         {/* Action Buttons */}
         <div
           className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up"
-          style={{ animationDelay: "0.4s" }}
-        >
+          style={{ animationDelay: "0.4s" }}>
           <button
             onClick={onBackToDashboard}
-            className="px-8 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors shadow-lg hover:shadow-xl"
-          >
+            className="px-8 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors shadow-lg hover:shadow-xl">
             Back to Dashboard
           </button>
           <button
@@ -97,8 +95,7 @@ const InvoiceSuccessScreen = ({
                 100
               );
             }}
-            className="px-8 py-3 bg-white text-blue-600 border-2 border-blue-600 rounded-lg font-semibold hover:bg-blue-50 transition-colors"
-          >
+            className="px-8 py-3 bg-white text-blue-600 border-2 border-blue-600 rounded-lg font-semibold hover:bg-blue-50 transition-colors">
             View All Invoices
           </button>
         </div>
@@ -106,8 +103,7 @@ const InvoiceSuccessScreen = ({
         {/* Stats or additional info */}
         <div
           className="mt-12 grid grid-cols-3 gap-4 animate-fade-in-up"
-          style={{ animationDelay: "0.6s" }}
-        >
+          style={{ animationDelay: "0.6s" }}>
           <div className="bg-blue-50 rounded-lg p-4">
             <div className="text-2xl font-bold text-blue-600">✓</div>
             <div className="text-sm text-gray-600 mt-1">Created</div>
@@ -258,14 +254,12 @@ const FAQSection = () => {
             key={index}
             className={`bg-white rounded-2xl overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg border-2 ${
               openIndex === index ? "border-blue-500" : "border-gray-200"
-            }`}
-          >
+            }`}>
             <button
               onClick={() => toggleFAQ(index)}
               className={`w-full px-8 py-6 flex items-center justify-between text-left transition-all duration-300 ${
                 openIndex === index ? "bg-blue-50" : "hover:bg-gray-50"
-              }`}
-            >
+              }`}>
               <span className="text-xl font-semibold text-gray-900 pr-4">
                 {faq.question}
               </span>
@@ -274,16 +268,14 @@ const FAQSection = () => {
                   openIndex === index
                     ? "bg-blue-600 rotate-45"
                     : "bg-gray-100 hover:bg-blue-100"
-                }`}
-              >
+                }`}>
                 <svg
                   className={`w-6 h-6 transition-colors ${
                     openIndex === index ? "text-white" : "text-gray-600"
                   }`}
                   fill="none"
                   viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
+                  stroke="currentColor">
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -299,8 +291,7 @@ const FAQSection = () => {
                 openIndex === index
                   ? "max-h-96 opacity-100"
                   : "max-h-0 opacity-0"
-              }`}
-            >
+              }`}>
               <div className="px-8 pb-6 bg-blue-50">
                 <p className="text-gray-700 text-base leading-relaxed">
                   {faq.answer}
@@ -500,7 +491,9 @@ export default function DashboardPage() {
                 {/* Date */}
                 <div className="bg-white rounded-lg border border-gray-200 px-4 py-3 shadow-sm">
                   <div className="flex items-center gap-2 text-sm text-gray-600">
-                    <span>📅</span>
+                    <span className="text-lg">
+                      <IoCalendar />
+                    </span>
                     <span>{getCurrentDateTime()}</span>
                   </div>
                 </div>
@@ -521,8 +514,7 @@ export default function DashboardPage() {
                 </div>
                 <button
                   onClick={() => setActiveTab("invoices")}
-                  className="text-blue-600 hover:text-blue-800 font-medium"
-                >
+                  className="text-blue-600 hover:text-blue-800 font-medium">
                   View All
                 </button>
               </div>
@@ -546,8 +538,7 @@ export default function DashboardPage() {
                   <p className="text-red-600">{error}</p>
                   <button
                     onClick={loadInvoices}
-                    className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-                  >
+                    className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
                     Retry
                   </button>
                 </div>
@@ -561,8 +552,7 @@ export default function DashboardPage() {
                   </p>
                   <button
                     onClick={() => setActiveTab("invoices")}
-                    className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-                  >
+                    className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
                     Create Invoice
                   </button>
                 </div>
@@ -618,9 +608,10 @@ export default function DashboardPage() {
                 />
                 <button
                   onClick={() => setShowCreateInvoice(true)}
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center gap-2"
-                >
-                  <span className="text-lg">+</span>
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center gap-2">
+                  <span className="text-xl">
+                    <IoMdAddCircleOutline />
+                  </span>
                   Create Invoice
                 </button>
               </div>
@@ -647,8 +638,7 @@ export default function DashboardPage() {
                 <p className="text-red-600 text-lg mb-4">{error}</p>
                 <button
                   onClick={loadInvoices}
-                  className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium"
-                >
+                  className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium">
                   Retry
                 </button>
               </div>
@@ -662,8 +652,7 @@ export default function DashboardPage() {
                 </p>
                 <button
                   onClick={() => setShowCreateInvoice(true)}
-                  className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium"
-                >
+                  className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium">
                   Create Your First Invoice
                 </button>
               </div>
@@ -712,8 +701,7 @@ export default function DashboardPage() {
       <main
         className={`flex-1 overflow-y-auto ${
           !isConnected ? "filter blur-sm" : ""
-        }`}
-      >
+        }`}>
         <div className="p-6">{renderContent()}</div>
       </main>
       <WalletConnectModal />
