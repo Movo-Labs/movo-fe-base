@@ -247,9 +247,9 @@ export default function PreviewInvoice({
 
             <div>
               <div className="text-sm text-gray-600 mb-1">Settlement Currency:</div>
-              <div className="text-lg font-bold text-gray-900">mIDR</div>
+              <div className="text-lg font-bold text-gray-900">IDR</div>
               <div className="text-sm text-gray-500">
-                You'll receive in mIDR (mock IDR)
+                You'll receive in IDR (Rupiah)
               </div>
             </div>
 
