@@ -3,11 +3,14 @@
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { useAccount } from "wagmi";
-import Footer from "@/components/Footer";
-import CountUp from "@/components/animations/CountUp";
-import Navbar from "@/components/Navbar";
-import StarBorder from "@/components/animations/StarBorder";
-import ScrollReveal from "@/components/animations/ScrollReveal";
+
+// Dynamic imports for client-only components
+const Footer = dynamic(() => import("@/components/Footer"), { ssr: false });
+const CountUp = dynamic(() => import("@/components/animations/CountUp"), { ssr: false });
+const StarBorder = dynamic(() => import("@/components/animations/StarBorder"), { ssr: false });
+const ScrollReveal = dynamic(() => import("@/components/animations/ScrollReveal"), { ssr: false });
+const Navbar = dynamic(() => import("@/components/Navbar"), { ssr: false });
+
 const World = dynamic(
   () => import("@/components/ui/globe").then((mod) => mod.World),
   {
@@ -485,7 +488,7 @@ export default function HomePage() {
               speed="3s"
               onClick={handleGetStarted}
               className="relative group text-white px-10 py-4 font-semibold cursor-pointer text-lg
-                bg-gradient-to-r from-cyan-500/10 via-blue-500/10 to-cyan-500/10
+                bg-linear-to-r from-cyan-500/10 via-blue-500/10 to-cyan-500/10
                 hover:from-cyan-500/20 hover:via-blue-500/20 hover:to-cyan-500/20
                 backdrop-blur-sm
                 shadow-[0_0_20px_rgba(6,182,212,0.3)]
@@ -508,7 +511,7 @@ export default function HomePage() {
               
               {/* Animated gradient overlay */}
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-500/20 to-transparent 
+                <div className="absolute inset-0 bg-linear-to-r from-transparent via-cyan-500/20 to-transparent 
                   animate-shimmer" 
                   style={{
                     backgroundSize: '200% 100%',

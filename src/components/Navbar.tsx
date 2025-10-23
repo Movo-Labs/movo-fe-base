@@ -82,7 +82,7 @@ export default function Navbar() {
 
                 {/* Futuristic hover effects */}
                 <div
-                  className={`absolute inset-0 rounded-lg bg-gradient-to-r from-blue-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
+                  className={`absolute inset-0 rounded-lg bg-linear-to-r from-blue-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
                     hoveredItem === item.name ? "animate-pulse" : ""
                   }`}
                 />
@@ -92,7 +92,7 @@ export default function Navbar() {
 
                 {/* Bottom glow line */}
                 <div
-                  className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent transition-all duration-300 ${
+                  className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 h-0.5 bg-linear-to-r from-transparent via-blue-400 to-transparent transition-all duration-300 ${
                     hoveredItem === item.name
                       ? "w-full opacity-100"
                       : "w-0 opacity-0"
@@ -101,7 +101,7 @@ export default function Navbar() {
 
                 {/* Scanning line effect */}
                 <div
-                  className={`absolute top-0 left-0 h-full w-0.5 bg-gradient-to-b from-transparent via-blue-400 to-transparent transition-all duration-500 ${
+                  className={`absolute top-0 left-0 h-full w-0.5 bg-linear-to-b from-transparent via-blue-400 to-transparent transition-all duration-500 ${
                     hoveredItem === item.name ? "animate-scan" : ""
                   }`}
                 />
@@ -110,9 +110,8 @@ export default function Navbar() {
           </div>
         </div>
       </div>
-
       {/* Additional futuristic elements */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-blue-500/50 to-transparent" />
     </nav>
   );
 }

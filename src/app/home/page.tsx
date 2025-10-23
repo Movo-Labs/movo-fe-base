@@ -1,6 +1,18 @@
-'use client';
+"use client";
 
-import { World } from "@/components/ui/globe";
+import dynamic from "next/dynamic";
+
+const World = dynamic(
+  () => import("@/components/ui/globe").then((mod) => mod.World),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="h-screen w-full bg-black flex items-center justify-center">
+        <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-blue-500"></div>
+      </div>
+    ),
+  }
+);
 
 const globeConfig = {
   pointSize: 1,
@@ -15,7 +27,7 @@ const globeConfig = {
   ambientLight: "#ffffff",
   directionalLeftLight: "#ffffff",
   directionalTopLight: "#ffffff",
-  pointLight: "#ffffff"
+  pointLight: "#ffffff",
 };
 
 const globeData = [
@@ -26,7 +38,7 @@ const globeData = [
     endLat: 35.8,
     endLng: 104.1,
     arcAlt: 0.3,
-    color: "#ffffff"
+    color: "#ffffff",
   },
   {
     order: 2,
@@ -35,7 +47,7 @@ const globeData = [
     endLat: 40.7,
     endLng: -74.0,
     arcAlt: 0.3,
-    color: "#ffffff"
+    color: "#ffffff",
   },
   // Add more arcs as needed
 ];
@@ -43,7 +55,7 @@ const globeData = [
 export default function LandingPage() {
   return (
     <div className="h-screen w-full bg-black">
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A0A] via-transparent to-[#0A0A0A]" />
+      <div className="absolute inset-0 bg-linear-to-b from-[#0A0A0A] via-transparent to-[#0A0A0A]" />
       <div className="relative h-full w-full">
         <World data={globeData} globeConfig={globeConfig} />
       </div>
